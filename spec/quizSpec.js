@@ -33,7 +33,7 @@ describe('a quiz', function() {
     var quiz = new Quiz();
     quiz.add(5);
     quiz.add(3);
-    expect(quiz.numbers).toEqual([5, 3]);
+    expect(quiz.numbers()).toEqual([5, 3]);
   });
 
 // We can only add numbers
@@ -45,7 +45,7 @@ describe('a quiz', function() {
     quiz.add(5);
     quiz.add(3);
     quiz.add("7");
-    expect(quiz.numbers).toEqual([5, 3]);
+    expect(quiz.numbers()).toEqual([5, 3]);
   });
 
 // Or arrays of numbers
@@ -57,7 +57,7 @@ describe('a quiz', function() {
     quiz.add(5);
     quiz.add(3);
     quiz.add([4, 2, true, 9]);
-    expect(quiz.numbers).toEqual([5, 3, 4, 2, 9]);
+    expect(quiz.numbers()).toEqual([5, 3, 4, 2, 9]);
   });
 
 // We can't access the array directly
@@ -67,7 +67,10 @@ describe('a quiz', function() {
 // quiz.numbers() => [1, 2, 3]
 
   it('cannot be accessed directly', function(){
-    expect("This doesn't work").toBe(false);
+    var quiz = new Quiz();
+    quiz.add([1, 2, 3]);
+    quiz.numbers().push(5);
+    expect(quiz.numbers()).toEqual([1, 2, 3]);
   });
 
 // Trash returns anything we've tried to add that's not a number.
@@ -102,7 +105,7 @@ describe('a quiz', function() {
     var quiz = new Quiz();
     quiz.add([1, 2, 3, 4, 5]);
     quiz.rotate(2);
-    expect(quiz.numbers).toEqual([3, 4, 5, 1, 2]);
+    expect(quiz.numbers()).toEqual([3, 4, 5, 1, 2]);
   });
 
 // Prints out the number of even numbers in the array.

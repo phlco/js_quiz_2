@@ -8,15 +8,18 @@
 var QUIZ_TOPICS = ['javascript', 'jasmine', 'testing'];
 
 function Quiz(){
-  this.numbers = [];
+  var numbers = [];
+  this.numbers = function(){
+    return numbers.slice();
+  };
   this.trash = [];
   this.add = function(number){
     if (typeof(number) === 'number') {
-      this.numbers.push(number);
+      numbers.push(number);
     } else if (typeof(number) === 'object') {
       for (i=0; i<number.length; i++) {
         if (typeof(number[i]) === 'number') {
-          this.numbers.push(number[i]);
+          numbers.push(number[i]);
         } else {
           this.trash.push(number[i]);
         }
@@ -26,28 +29,28 @@ function Quiz(){
     }
   };
   this.count = function(number){
-    i = 0;
-    for (k=0; k<this.numbers.length; k++) {
-      if (this.numbers[k] === number) {
-        i++;
+    a = 0;
+    for (k=0; k<numbers.length; k++) {
+      if (numbers[k] === number) {
+        a++;
       }
     }
-    return i;
+    return a;
   };
   this.rotate = function(number){
     for (i=0; i<number; i++) {
-      var num = this.numbers[0];
-      this.numbers.shift();
-      this.numbers.push(num);
+      var num = numbers[0];
+      numbers.shift();
+      numbers.push(num);
     }
   };
   this.countEvens = function(){
-    k = 0;
-    for (i=0; i<this.numbers.length; i++) {
-      if (this.numbers[i]%2 === 0) {
-        k++;
+    var c = 0;
+    for (i=0; i<numbers.length; i++) {
+      if (numbers[i]%2 === 0) {
+        c++;
       }
     }
-    return k;
+    return c;
   };
 }
