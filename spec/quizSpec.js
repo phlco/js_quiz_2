@@ -15,6 +15,23 @@ describe('a quiz', function() {
     expect(QUIZ_TOPICS).toContain('javascript');
   });
 
+
+  it('creates a new quiz object', function() {
+    var quiz = new Quiz();
+    expect(quiz instanceof Quiz).toBe(true);
+  });
+
+  it('adds a number to the numbers array', function() {
+     var quiz = new Quiz();
+     quiz.add(5);
+     expect(quiz.numbers).toContain(5)
+  });
+
+  it('can only add a number', function() {
+    var quiz = new Quiz();
+    quiz.add('5');
+    expect(quiz.numbers).toNotContain('5')
+  })
 });
 
 // Create a new quiz object
