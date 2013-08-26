@@ -63,6 +63,16 @@ var Quiz = function() {
 				array.push(array.shift());
 			}
 			return array;
+		},
+
+		evenNumbers: function() {
+			var i = 0, max = values.length, even = [];
+			for(i; i < max; i += 1) {
+				if(values[i] % 2 === 0 && even.indexOf(values[i]) === -1) {
+					even.push(values[i]);
+				}
+			}
+			return even;
 		}
 	};
 };

@@ -104,6 +104,12 @@ describe('rotate', function() {
 });
 
 
-describe('countEven', function() {
-
+describe('evenNumbers', function() {
+	
+	// Prints out the number of even numbers in the array.		
+	it('should console.log and return the array of even numbers', function() {
+		var quiz = new Quiz();
+		quiz.add([2,3,4,5,6,10,2,3,10,120]);
+		expect(quiz.evenNumbers()).toEqual([2,4,6,10,120]);
+	});
 });
