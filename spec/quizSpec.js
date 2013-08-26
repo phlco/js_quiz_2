@@ -8,12 +8,22 @@
 
 // See quiz.js for more details
 
-describe('a quiz', function() {
+describe('a quiz', function () {
+  var quiz = Object.create(Quiz.prototype);
 
-  it('is about JavaScript and testing with Jasmine', function() {
+  it('is about JavaScript and testing with Jasmine', function () {
     expect(QUIZ_TOPICS).toContain('jasmine');
     expect(QUIZ_TOPICS).toContain('javascript');
+    expect(QUIZ_TOPICS).toContain('testing');
   });
+  it('has an Object called Quiz',
+    function () {
+      expect(quiz).toEqual(Quiz.prototype);
+    });
+  it('can add numbers into the array',
+    function () {
+      expect(quiz.numbers(5)).toEqual(____);
+    });
 
 });
 
