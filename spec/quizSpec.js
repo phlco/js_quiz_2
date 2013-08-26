@@ -18,28 +18,59 @@ describe('a quiz', function() {
 });
 
 // Create a new quiz object
-// var quiz = new Quiz()
+var quiz = new Quiz();
 
 // We can add numbers to it
 // quiz.add(5)
 // quiz.add(3)
 
+describe('the Quiz prototype', function() {
+
+  it('can have a number added to it', function() {
+    quiz.add(5);
+    expect(quiz.nums[quiz.nums.length - 1]).toEqual(5);
+  });
+
 // We can see the numbers we've added
 // quiz.numbers() => [5, 3]
+
+  it('can show the numbers it contains', function() {
+    expect(quiz.numbers() instanceof Array).toBe(true);
+  });
 
 // We can only add numbers
 // quiz.add("7")
 // quiz.numbers() => [5, 3]
 
+  it('does not add non-number input', function() {
+    quiz.add("7");
+    expect(typeof quiz.numbers()[quiz.numbers().length - 1]).toEqual("number");
+  });
+
 // Or arrays of numbers
 // quiz.add([4, 2, true, 9])
 // quiz.numbers() => [5, 3, 4, 2, 9]
+
+  it('adds number elements from an array', function() {
+    quiz.add([4, 2, true, 9]);
+    expect(quiz.numbers()).toEqual([5, 4, 2, 9]);
+  });
 
 // We can't access the array directly
 // quiz = new Quiz();
 // quiz.add([1, 2, 3])
 // quiz.numbers().push(5)
 // quiz.numbers() => [1, 2, 3]
+
+  describe('function numbers()', function() {
+
+    it('does not allow direct access to the nums array', function() {
+      var l = quiz.numbers().length;
+      quiz.numbers().push(5);
+      expect(quiz.numbers().length).toEqual(l);
+    });
+
+  });
 
 // Trash returns anything we've tried to add that's not a number.
 // quiz.add(["7", true])
@@ -60,3 +91,5 @@ describe('a quiz', function() {
 // Prints out the number of even numbers in the array.
 // quiz.numbers() => [1, 2, 3, 4, 5]
 // quiz.countEvent() => 2
+
+});
