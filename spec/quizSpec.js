@@ -15,22 +15,50 @@ describe('a quiz', function() {
     expect(QUIZ_TOPICS).toContain('javascript');
   });
 
-});
+
 
 // Create a new quiz object
-// var quiz = new Quiz()
+it ('creates a new quiz object', function(){
+var quiz = new Quiz();
+expect(quiz.name).toBe('quiz');
+  });
+
+
 
 // We can add numbers to it
 // quiz.add(5)
 // quiz.add(3)
+it ('adds numbers to a numbers array', function(){
+  var quiz = new Quiz();
+  quiz.add(3);
+  quiz.add(5);
+  expect(quiz.numbers[0]).toBe(3);
+  expect(quiz.numbers.length).toBe(2);
+});
+
+
 
 // We can see the numbers we've added
 // quiz.numbers() => [5, 3]
+it ('returns the array of numbers', function(){
+  var quiz = new Quiz();
+  quiz.add(3);
+  quiz.add(5);
+  expect(quiz.numbers).toEqual([3, 5]);
+});
+
+
 
 // We can only add numbers
 // quiz.add("7")
 // quiz.numbers() => [5, 3]
 
+// it('can only add numbers', function(){
+//   quiz.push("7");
+
+// });
+
+});
 // Or arrays of numbers
 // quiz.add([4, 2, true, 9])
 // quiz.numbers() => [5, 3, 4, 2, 9]
@@ -60,3 +88,6 @@ describe('a quiz', function() {
 // Prints out the number of even numbers in the array.
 // quiz.numbers() => [1, 2, 3, 4, 5]
 // quiz.countEvent() => 2
+
+
+
