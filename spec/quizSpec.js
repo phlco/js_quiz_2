@@ -9,12 +9,37 @@
 // See quiz.js for more details
 
 describe('a quiz', function() {
+  var quiz = new Quiz();
 
   it('is about JavaScript and testing with Jasmine', function() {
     expect(QUIZ_TOPICS).toContain('jasmine');
     expect(QUIZ_TOPICS).toContain('javascript');
   });
 
+
+  it('creates a new quiz object', function() {
+    expect(quiz instanceof Quiz).toBe(true);
+  });
+
+  it('adds a number to the numbers array', function() {
+     quiz.add(5);
+     expect(quiz.numbers).toContain(5)
+  });
+
+  it('can only add a number', function() {
+    quiz.add('5');
+    expect(quiz.numbers).toNotContain('5')
+  });
+
+  it('can also add arrays', function() {
+    quiz.add([1,2]);
+    expect(quiz.numbers).toContain([1,2])
+  });
+
+  it('it trashes anything that isnt a number', function(){
+    quiz.add("5");
+    expect(quiz.trash).toContain("5");
+  });
 });
 
 // Create a new quiz object
@@ -45,7 +70,7 @@ describe('a quiz', function() {
 // quiz.add(["7", true])
 // quiz.trash() => ["7", true]
 
-// Returns the number of occurences of a specified number
+// Returns the number of occurrences of a specified number
 // quiz.numbers() => [5, 3, 4, 3]
 // quiz.count(3) => 2
 
