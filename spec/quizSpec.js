@@ -15,14 +15,36 @@ describe('a quiz', function() {
     expect(QUIZ_TOPICS).toContain('javascript');
   });
 
-});
-
 // Create a new quiz object
 // var quiz = new Quiz()
+
+  var new_quiz = Object.create(quiz);
+
+  it("should start with a default name from its prototype", function() {
+    expect(new_quiz.name).toBe("new quiz");
+  });
+
+  it("should take a new name when assigned", function() {
+    new_quiz.setName("new quiz 2");
+    expect(new_quiz.name).toBe("new quiz 2");
+  });
 
 // We can add numbers to it
 // quiz.add(5)
 // quiz.add(3)
+
+  it("set a static number", function() {
+    expect(new_quiz.numbers).toEqual([0]);
+  });
+
+  it("add numbers", function() {
+    new_quiz.addNumber(5);
+    new_quiz.addNumber(3);
+    expect(new_quiz.numbers).toEqual([0, 5, 3]);
+  });
+
+
+});
 
 // We can see the numbers we've added
 // quiz.numbers() => [5, 3]
