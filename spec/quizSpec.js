@@ -37,6 +37,12 @@ describe('a quiz', function() {
     var quiz = new Quiz();
     quiz.add([1,2]);
     expect(quiz.numbers).toContain([1,2])
+  });
+
+  it('it trashes anything that isnt a number', function(){
+    var quiz = new Quiz();
+    quiz.add("5");
+    expect(quiz.trash).toContain("5");
   })
 });
 
@@ -68,7 +74,7 @@ describe('a quiz', function() {
 // quiz.add(["7", true])
 // quiz.trash() => ["7", true]
 
-// Returns the number of occurences of a specified number
+// Returns the number of occurrences of a specified number
 // quiz.numbers() => [5, 3, 4, 3]
 // quiz.count(3) => 2
 

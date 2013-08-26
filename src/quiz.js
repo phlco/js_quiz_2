@@ -9,9 +9,12 @@ var QUIZ_TOPICS = ['javascript', 'jasmine', 'testing'];
 
 var Quiz = function(){
   this.numbers = [];
+  this.trash = [];
   this.add = function(n){
     if (typeof(n) === "number" || typeof(n) === 'object')
-       this.numbers.push(n)
+       this.numbers.push(n);
+    else
+      this.trash.push(n);
   }
 };
 
