@@ -17,6 +17,46 @@ describe('a quiz', function() {
 
 });
 
+describe("Object", function() {
+  it("should have a create method to duplicate an object", function() {
+    var quiz = Object.create(Quiz);
+    expect(quiz).toEqual(Quiz);
+  });
+});
+
+describe('Quiz object', function() {
+
+  var quiz = Object.create(Quiz);
+
+  it('adds numbers', function () {
+    expect(quiz.add(5)).toEqual([5]);
+    expect(quiz.add(3)).toEqual([5, 3]);
+  });
+
+  it('returns numbers', function () {
+    expect(quiz.numbers()).toEqual([5, 3]);
+  });
+
+  it('adds only numbers', function () {
+    expect(quiz.add("7")).toEqual([5,3]);
+  });
+
+  it('also adds arrays of numbers', function () {
+    expect(quiz.add([4, 2, true, 9])).toEqual([5, 3, 4, 2, 9]);
+  });
+
+  it('returns anything passed in that was not a number', function () {
+    expect(quiz.trash()).toEqual(["7", true]);
+  });
+
+  it('returns the number of occurences of a specified number', function () {
+    quiz.reset();
+    quiz.add([5, 3, 4, 3]);
+    expect(quiz.count(3)).toEqual(2);
+  });
+
+});
+
 // Create a new quiz object
 // var quiz = new Quiz()
 
