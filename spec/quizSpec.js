@@ -9,6 +9,7 @@
 // See quiz.js for more details
 
 describe('a quiz', function() {
+  var quiz = new Quiz();
 
   it('is about JavaScript and testing with Jasmine', function() {
     expect(QUIZ_TOPICS).toContain('jasmine');
@@ -17,33 +18,28 @@ describe('a quiz', function() {
 
 
   it('creates a new quiz object', function() {
-    var quiz = new Quiz();
     expect(quiz instanceof Quiz).toBe(true);
   });
 
   it('adds a number to the numbers array', function() {
-     var quiz = new Quiz();
      quiz.add(5);
      expect(quiz.numbers).toContain(5)
   });
 
   it('can only add a number', function() {
-    var quiz = new Quiz();
     quiz.add('5');
     expect(quiz.numbers).toNotContain('5')
   });
 
   it('can also add arrays', function() {
-    var quiz = new Quiz();
     quiz.add([1,2]);
     expect(quiz.numbers).toContain([1,2])
   });
 
   it('it trashes anything that isnt a number', function(){
-    var quiz = new Quiz();
     quiz.add("5");
     expect(quiz.trash).toContain("5");
-  })
+  });
 });
 
 // Create a new quiz object

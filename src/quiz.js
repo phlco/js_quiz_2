@@ -11,10 +11,17 @@ var Quiz = function(){
   this.numbers = [];
   this.trash = [];
   this.add = function(n){
-    if (typeof(n) === "number" || typeof(n) === 'object')
+    if (typeof(n) === "number" || typeof(n) === 'object') {
        this.numbers.push(n);
-    else
+    } else {
       this.trash.push(n);
+    }
+  };
+  this.count = function(){
+    for(var i = 0; i< this.numbers.length; i++) {
+      var n = this.numbers[i];
+
+    }
   }
 };
 
