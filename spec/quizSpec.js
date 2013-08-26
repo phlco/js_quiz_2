@@ -8,6 +8,15 @@
 
 // See quiz.js for more details
 
+//used resources to get this prototype test
+describe("Object", function() {
+  it("should have a create method to duplicate objects", function() {
+    var o = {name: "monday quiz"};
+    var o2 = Object.create(o);
+    expect(o2.name).toBe("monday quiz");
+  });
+});
+
 describe('a quiz', function() {
 
   it('is about JavaScript and testing with Jasmine', function() {
@@ -18,14 +27,51 @@ describe('a quiz', function() {
 });
 
 // Create a new quiz object
-// var quiz = new Quiz()
 
-// We can add numbers to it
-// quiz.add(5)
-// quiz.add(3)
+describe('quiz object', function() {
+  // var quiz = new Quiz()
+ var new_quiz = Object.create(quiz);
 
-// We can see the numbers we've added
-// quiz.numbers() => [5, 3]
+
+  it('should be able to instantiate new quizzes', function() {
+    //test the attribute
+    expect(quiz.type).toBe('Javascript');
+  });
+
+  it('has a hello world function', function() {
+    //test a function
+    expect(quiz.helloWorld()).toBe('Hello World');
+  });
+
+  it('can add numbers to our array', function() {
+    //ok now I can test for what you've asked for since I got the
+    //basic tests down
+    quiz.add(5);
+    expect(quiz_array).toContain(5);
+    //below is a failing test but you have to just try it to see
+    //if you're testing for the correct things
+    //  quiz.add(5);
+    // expect(quiz_array).toContain(4);
+  });
+
+  it('can add more than one number to array', function() {
+    // We can add numbers to it
+    // quiz.add(5)
+    // quiz.add(3)
+    quiz.add(5);
+    quiz.add(3);
+    expect(quiz_array).toContain(5,3);
+  });
+
+  it('can show our array', function() {
+    // We can see the numbers we've added
+    // quiz.numbers() => [5, 3]
+    expect(quiz.numbers()).toEqual(quiz_array);
+  });
+
+  // We can only add numbers
+  // quiz.add("7")
+  // quiz.numbers() => [5, 3]
 
 // We can only add numbers
 // quiz.add("7")
@@ -60,3 +106,5 @@ describe('a quiz', function() {
 // Prints out the number of even numbers in the array.
 // quiz.numbers() => [1, 2, 3, 4, 5]
 // quiz.countEvent() => 2
+
+});
