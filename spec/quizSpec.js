@@ -20,12 +20,35 @@ describe('a quiz', function() {
 // Create a new quiz object
 // var quiz = new Quiz()
 
+describe('a new quiz object', function(){
+
+  it('is a new quiz object', function(){
+    expect(typeof quiz).toBe("object");
+  });
+});
+
 // We can add numbers to it
 // quiz.add(5)
 // quiz.add(3)
 
+describe('adding numbers to quiz', function(){
+  it('allows adding numbers to the quiz object');
+
+    quiz.add(5);
+    quiz.add(3);
+
+    expect(quiz.numbers).toContain(5);
+    expect(quiz.numbers).toContain(3);
+});
+
 // We can see the numbers we've added
 // quiz.numbers() => [5, 3]
+
+describe('what is in the numbers array', function(){
+  it('quiz.numbers should contain everything added with quiz.add');
+
+    expect(quiz.numbers).toEqual([ 5, 3 ]);
+});
 
 // We can only add numbers
 // quiz.add("7")

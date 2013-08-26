@@ -6,3 +6,12 @@
 //      |__|     |__|  |__| |__| |_______/       |__| |_______/       /__/     \__\     \_____\_____\\______/  |__|  /________(__)
 
 var QUIZ_TOPICS = ['javascript', 'jasmine', 'testing'];
+
+var Quiz = function Quiz(){
+  this.numbers = [];
+  this.add = function(number){
+    this.numbers.push(number);
+  };
+};
+
+var quiz = new Quiz();
