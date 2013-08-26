@@ -14,8 +14,18 @@ describe('a quiz', function() {
     expect(QUIZ_TOPICS).toContain('jasmine');
     expect(QUIZ_TOPICS).toContain('javascript');
   });
-
 });
+
+its('is creating a new Quiz object', function() {
+   q = quiz.create();
+   expect(typeOf).toBe('object');
+});
+
+// thought we were supposed to add stuff together.
+function add(num1, num2) {
+  results = num1 + num2;
+  return results;
+}
 
 // Create a new quiz object
 // var quiz = new Quiz()
