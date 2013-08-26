@@ -15,7 +15,29 @@ describe('a quiz', function() {
     expect(QUIZ_TOPICS).toContain('javascript');
   });
 
+
+  it("has an add function", function(){
+    var quiz = new Quiz();
+    quiz.add(5);
+    expect(quiz.numList).toContain(5);
+  });
+
+  it(" allows numbers but not strings", function(){
+     var quiz = new Quiz();
+    quiz.add(7);
+    quiz.add("5");
+    expect(quiz.numList.length).toEqual(1);
+  });
+
+  it("cannot access numbers array directly", function(){
+    var quiz = new Quiz();
+    quiz.add(7);
+    expect(typeof(quiz.numbers())).toEqual("string");
+  });
+
 });
+
+
 
 // Create a new quiz object
 // var quiz = new Quiz()
