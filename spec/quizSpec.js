@@ -17,8 +17,56 @@ describe('a quiz', function() {
 
 });
 
+
+
+
+
 // Create a new quiz object
 // var quiz = new Quiz()
+
+ describe('the add method', function(){
+
+  it('can add numbers', function() {
+    quiz.add(4);
+    expect(quiz.numbers).toContain([4]);
+  });
+ });
+
+
+ describe('the numbers method', function () {
+
+   it('it returns an array', function() {
+    quiz.add(4);
+    expect(quiz.numbers).toBe(Array);
+   });
+
+   it('it should not contain a string', function() {
+    quiz.add("tree");
+    expect(quiz.numbers).toContain();
+   });
+
+ });
+
+
+
+ describe('the trash method', function() {
+
+  it('can add strings to the trash array', function() {
+    quiz.add("tree");
+    expect(quiz.trash).toContain('tree');
+  });
+
+  it('will not contain a number in the trash array', function() {
+    quiz.add(4);
+    expect(quiz.trash).toContain();
+  });
+
+ });
+
+
+describe('the count method', function() {
+
+});
 
 // We can add numbers to it
 // quiz.add(5)
