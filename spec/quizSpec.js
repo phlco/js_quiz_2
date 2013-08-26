@@ -10,11 +10,45 @@
 
 describe('a quiz', function() {
 
+
+
   it('is about JavaScript and testing with Jasmine', function() {
     expect(QUIZ_TOPICS).toContain('jasmine');
     expect(QUIZ_TOPICS).toContain('javascript');
   });
 
+  var quiz = new Quiz();
+  it('creates a new instance quiz from Quiz', function() {
+    expect(quiz instanceof Quiz).toBe(true);
+  });
+
+  it('pushes a number into the numbers array', function() {
+    quiz.add(5);
+    quiz.add(3);
+    expect(quiz.numbers).toEqual([5, 3]);
+  });
+
+  it('should not add anything other than numbers', function() {
+    quiz.add('7');
+    expect(quiz.numbers).toEqual([5, 3]);
+  });
+
+  it('should add number even if it is in array', function() {
+    quiz.add([4, 2, true, 9]);
+    expect(quiz.numbers).toEqual([5, 3, 4, 2, 9]);
+  });
+
+  // it('should not allow access of array directly', function() {
+  //   quiz = new Quiz();
+  //   quiz.add([1, 2, 3]);
+  //   quiz.numbers.push(5);
+  //   expect(quiz.numbers).toEqual([1, 2, 3]);
+  // });
+
+  it('should add non-number to trash array', function() {
+    quiz.add(['7', true]);
+    expect(quiz.trash).toEqual(['7', true]);
+  });
 });
 
 // Create a new quiz object
