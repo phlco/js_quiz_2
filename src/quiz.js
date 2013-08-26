@@ -10,7 +10,7 @@ var QUIZ_TOPICS = ['javascript', 'jasmine', 'testing'];
 var Quiz = function(){
   this.numbers = [];
   this.add = function(n){
-    if (typeof(n) === "number")
+    if (typeof(n) === "number" || typeof(n) === 'object')
        this.numbers.push(n)
   }
 };

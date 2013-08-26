@@ -31,6 +31,12 @@ describe('a quiz', function() {
     var quiz = new Quiz();
     quiz.add('5');
     expect(quiz.numbers).toNotContain('5')
+  });
+
+  it('can also add arrays', function() {
+    var quiz = new Quiz();
+    quiz.add([1,2]);
+    expect(quiz.numbers).toContain([1,2])
   })
 });
 
