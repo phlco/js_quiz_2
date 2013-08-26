@@ -26,7 +26,7 @@ var quiz = {
   numbers: [0],
 
   addNumber: function(num) {
-    this.numbers << num;
+    this.numbers.push(num);
   },
 
 };
