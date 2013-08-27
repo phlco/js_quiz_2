@@ -6,6 +6,7 @@
 // /__/     \__\ \______| /__/     \__\ |__| |__| \__|     __    (__)
 //                                                        (__)
 
+// The first question's tests are written.
 // See quiz.js for more details
 
 describe('a quiz', function() {
@@ -17,46 +18,70 @@ describe('a quiz', function() {
 
 });
 
-// Create a new quiz object
-// var quiz = new Quiz()
+describe("Quiz", function() {
+  var quiz;
 
-// We can add numbers to it
-// quiz.add(5)
-// quiz.add(3)
+  beforeEach(function() {
+    quiz = new Quiz();
+  });
 
-// We can see the numbers we've added
-// quiz.numbers() => [5, 3]
+  it("is an object", function() {
+    expect(typeof quiz).toBe("object");
+  });
 
-// We can only add numbers
-// quiz.add("7")
-// quiz.numbers() => [5, 3]
+  it(".add takes numbers or arrays", function() {
+    spyOn(quiz, "add");
+    quiz.add(5);
+    quiz.add([1, "dog"]);
+    expect(quiz.add).toHaveBeenCalledWith(5);
+    expect(quiz.add).toHaveBeenCalledWith([1, "dog"]);
+  });
 
-// Or arrays of numbers
-// quiz.add([4, 2, true, 9])
-// quiz.numbers() => [5, 3, 4, 2, 9]
+  it("doesn't give us access to it's internal numbers array", function() {
+    quiz.add(5);
+    quiz.numbers().push(4);
+    var type = typeof quiz.numbers;
+    expect(type).not.toBe("Array")
+    expect(quiz.numbers()).not.toEqual([5, 4]);
+  });
 
-// We can't access the array directly
-// quiz = new Quiz();
-// quiz.add([1, 2, 3])
-// quiz.numbers().push(5)
-// quiz.numbers() => [1, 2, 3]
+  it("stores non numbers in the trash", function() {
+    quiz.add(5);
+    quiz.add(NaN);
+    quiz.add([1, "dog"]);
+    var trash = quiz.trash();
+    expect(trash).toContain("dog");
+    expect(trash).not.toContain(1, 5);
+  });
 
-// Trash returns anything we've tried to add that's not a number.
-// quiz.add(["7", true])
-// quiz.trash() => ["7", true]
+  it(".countEvens counts even numbers", function() {
+    quiz.add([1, 2, 3, 4, 5]);
+    var evens = quiz.countEvens();
+    expect(evens).toEqual(2);
+    expect(evens).not.toEqual(3);
+  });
 
-// Returns the number of occurences of a specified number
-// quiz.numbers() => [5, 3, 4, 3]
-// quiz.count(3) => 2
+  it(".count(n) counts occurences of a specific number", function() {
+    quiz.add([1, 2, 1, 4, 5]);
+    var countOnes = quiz.count(1);
+    var countTwos = quiz.count(2);
+    expect(countOnes).toEqual(2);
+    expect(countTwos).not.toEqual(2);
+  });
 
-// Takes a specified length of an array starting from the left and moves it to
-// the tail end
-// quiz = new Quiz()
-// quiz.add([1, 2, 3, 4, 5])
-// quiz.numbers() => [1, 2, 3, 4, 5]
-// quiz.rotate(2)
-// quiz.numbers() => [3, 4, 5, 1, 2]
+  it(".rotate(n) moves a specified number of items from the left to the tail end", function() {
+    quiz.add([1, 2, 3, 4, 5]);
+    pre_rotate = quiz.numbers();
+    quiz.rotate(2);
+    post_rotate = quiz.numbers();
+    expect(pre_rotate).not.toEqual(post_rotate);
+    expect(post_rotate).toEqual([3, 4, 5, 1, 2]);
+  });
 
-// Prints out the number of even numbers in the array.
-// quiz.numbers() => [1, 2, 3, 4, 5]
-// quiz.countEvent() => 2
+  it("only has the following methods available", function() {
+    quiz = new Quiz();
+    expect(Object.keys(quiz).toString()).toEqual("add,numbers,count,countEvens,rotate,trash");
+    expect(Object.keys(quiz).toString()).not.toEqual("add,numbers,count,countEvens,rotate,trash,array")
+  });
+
+});
